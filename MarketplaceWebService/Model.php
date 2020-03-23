@@ -32,6 +32,7 @@ abstract class MarketplaceWebService_Model
      */
     public function __construct($data = null)
     {
+
         if (!is_null($data)) {
             if ($this->isAssociativeArray($data)) {
                 $this->fromAssociativeArray($data);
@@ -137,6 +138,11 @@ abstract class MarketplaceWebService_Model
     {
         $from = array( "&", "<", ">", "'", "\""); 
         $to = array( "&amp;", "&lt;", "&gt;", "&#039;", "&quot;");
+
+        if(is_object($str)) { 
+            $str = $str->format('Y-m-d H:i:s');
+        }
+        
         return str_replace($from, $to, $str); 
     }
 
